@@ -14,7 +14,9 @@ namespace ToskersCorner.RelayCommand.ViewModels
         public RelayCommand ConsoleLogCommand { get; private set; }
         public RelayCommand SubmitAsync { get; private set; }
         public RelayCommand Submit { get; private set; }
-        CoffeeService coffeeService { get; set; }
+        public RelayCommand Connect { get; private set; }
+        public CoffeeService coffeeService { get; set; }        
+
         public MessageViewModel()
         {
             MyMessages = new ObservableCollection<string>()
@@ -32,6 +34,7 @@ namespace ToskersCorner.RelayCommand.ViewModels
             coffeeService = new CoffeeService();
             SubmitAsync = new RelayCommand(ExecuteSubmitAsync, CanExecuteSubmit);
             Submit = new RelayCommand(ExecuteSubmit, CanExecuteSubmit);
+            Connect = new RelayCommand(ExecuteConnect);
         }
         
         public void DisplayInMessageBox(object message)
@@ -71,6 +74,18 @@ namespace ToskersCorner.RelayCommand.ViewModels
         private bool CanExecuteSubmit(object message)
         {
             return !coffeeService.IsExecuting;
+        }
+
+        private void ExecuteConnect(object message)
+        {
+            if(coffeeService.ConnectionStatus == "Connect")
+            {
+                coffeeService.ConnectionStatus = "Disconnect";
+            }
+            else
+            {
+                coffeeService.ConnectionStatus = "Connect";
+            }
         }
     }
 }

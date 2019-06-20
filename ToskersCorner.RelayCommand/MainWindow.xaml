@@ -11,7 +11,8 @@
         <ComboBox x:Name="comboMessages" ItemsSource="{Binding MyMessages}"/>
         <Button Command="{Binding MessageBoxCommand}" CommandParameter="{Binding ElementName=comboMessages, Path=SelectedItem}">Message Box</Button>
         <Button Command="{Binding ConsoleLogCommand}" CommandParameter="{Binding ElementName=comboMessages, Path=SelectedItem}">Console log</Button>
-        <Button Command="{Binding SubmitAsync}">SubmitAsync</Button>
         <Button Command="{Binding Submit}">Submit</Button>
+        <Button Command="{Binding SubmitAsync}">SubmitAsync</Button>
+        <Button Content="{Binding coffeeService.ConnectionStatus, UpdateSourceTrigger=PropertyChanged}" Command="{Binding Connect}"></Button>
     </StackPanel>
 </Window>

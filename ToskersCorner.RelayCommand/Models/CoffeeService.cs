@@ -6,24 +6,25 @@ namespace ToskersCorner.RelayCommand.Models
 {
     public class CoffeeService : ObservableObject
     {
-        public CoffeeService()
-        {
-            isExecuting = false;
-        }
-
-        private bool isExecuting;
-        public bool IsExecuting
+        private string connectionStatus;
+        public string ConnectionStatus
         {
             get
             {
-                return isExecuting;
+                return connectionStatus;
             }
             set
-            {                
-                isExecuting = value;
-                OnPropertyChanged("IsExecuting");
+            {
+                connectionStatus = value;
+                OnPropertyChanged("ConnectionStatus");
             }
         }
+        public CoffeeService()
+        {
+            IsExecuting = false;
+            ConnectionStatus = "Connect";
+        }
+        public bool IsExecuting { get; set; }
         public async Task PrepareCoffeeAsync()
         {
             IsExecuting = true;
