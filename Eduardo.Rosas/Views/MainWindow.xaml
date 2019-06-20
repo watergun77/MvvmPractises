@@ -1,0 +1,24 @@
+﻿<Window x:Class="Eduardo.Rosas.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eduardo.Rosas.Views"
+        xmlns:m="clr-namespace:Eduardo.Rosas.Models"
+        xmlns:vm="clr-namespace:Eduardo.Rosas.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <m:Person x:Key="person"/>
+        <vm:ViewModelBase x:Key="viewModel"/>
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource person}}">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
+            <TextBox Text="{Binding Name, Mode=TwoWay}" />
+            <TextBox Text="{Binding LastName, Mode=TwoWay}"/>
+            <TextBlock Text="{Binding FullName}"/>
+            <Button Content="simple command" Command="{Binding SimpleCommand, Source={StaticResource viewModel}}" />
+            <Button Content="parameter command" Command="{Binding ParameterCommand, Source={StaticResource viewModel}}" CommandParameter="{Binding FullName}"/>
+        </StackPanel>
+    </Grid>
+</Window>

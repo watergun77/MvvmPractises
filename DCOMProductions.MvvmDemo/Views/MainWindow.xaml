@@ -1,0 +1,10 @@
+﻿<Window x:Class="DCOMProductions.MvvmDemo.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="300" Width="300">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+        <Label>Customer name:</Label>
+        <TextBox Text="{Binding customer.Name}" Width="136"></TextBox>
+        <Button>Update</Button>
+    </StackPanel>
+</Window>
