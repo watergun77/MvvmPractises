@@ -14,5 +14,6 @@
         <Button Command="{Binding Submit}">Submit</Button>
         <Button Command="{Binding SubmitAsync}">SubmitAsync</Button>
         <Button Content="{Binding coffeeService.ConnectionStatus, UpdateSourceTrigger=PropertyChanged}" Command="{Binding Connect}"></Button>
+        <Button Content="{Binding Path=coffeeService.ConnectionStatus, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0}Async" Command="{Binding ConnectAsync}"></Button>
     </StackPanel>
 </Window>

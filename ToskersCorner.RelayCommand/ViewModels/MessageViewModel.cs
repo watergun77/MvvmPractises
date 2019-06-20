@@ -15,6 +15,7 @@ namespace ToskersCorner.RelayCommand.ViewModels
         public RelayCommand SubmitAsync { get; private set; }
         public RelayCommand Submit { get; private set; }
         public RelayCommand Connect { get; private set; }
+        public RelayCommand ConnectAsync { get; private set; }
         public CoffeeService coffeeService { get; set; }        
 
         public MessageViewModel()
@@ -32,9 +33,11 @@ namespace ToskersCorner.RelayCommand.ViewModels
             ConsoleLogCommand = new RelayCommand(DisplayInConsole, ConsoleCanUse);
 
             coffeeService = new CoffeeService();
-            SubmitAsync = new RelayCommand(ExecuteSubmitAsync, CanExecuteSubmit);
+            
             Submit = new RelayCommand(ExecuteSubmit, CanExecuteSubmit);
+            SubmitAsync = new RelayCommand(ExecuteSubmitAsync, CanExecuteSubmit);
             Connect = new RelayCommand(ExecuteConnect);
+            ConnectAsync = new RelayCommand(ExecuteConnectAsync, CanExecuteSubmit);
         }
         
         public void DisplayInMessageBox(object message)
@@ -78,14 +81,13 @@ namespace ToskersCorner.RelayCommand.ViewModels
 
         private void ExecuteConnect(object message)
         {
-            if(coffeeService.ConnectionStatus == "Connect")
-            {
-                coffeeService.ConnectionStatus = "Disconnect";
-            }
-            else
-            {
-                coffeeService.ConnectionStatus = "Connect";
-            }
+            coffeeService.ToggleConnectionStatus();
+        }
+
+        private async void ExecuteConnectAsync(object message)
+        {
+            await coffeeService.ConnectAsync();
+            CommandManager.InvalidateRequerySuggested(); // Refresh button from disable to enable
         }
     }
 }

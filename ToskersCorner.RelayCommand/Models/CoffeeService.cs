@@ -42,5 +42,23 @@ namespace ToskersCorner.RelayCommand.Models
             Console.WriteLine("Done making coffee");
             IsExecuting = false;
         }
+
+        public async Task ConnectAsync()
+        {
+            IsExecuting = true;
+            Console.WriteLine($"Async : Start to {ConnectionStatus}...");
+            await Task.Run(() => Thread.Sleep(5000));
+            ToggleConnectionStatus();
+            Console.WriteLine($"Async : {ConnectionStatus}ed!");
+            IsExecuting = false;
+        }
+
+        public void ToggleConnectionStatus()
+        {
+            if (ConnectionStatus == "Connect")
+                ConnectionStatus = "Disconnect";
+            else
+                ConnectionStatus = "Connect";
+        }
     }
 }
