@@ -5,14 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TabControl.Practise"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="250">
+        Title="FOUP TAS300" Height="300" Width="450">
     <Grid>
         <TabControl>
-            <TabItem Header="General">
-                <Label Content="Content goes here..."/>
+            <TabItem Header="FOUP #1">
+                <TabControl TabStripPlacement="Right">
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{TemplateBinding Content}">
+                                            <ContentPresenter.LayoutTransform>
+                                                <RotateTransform Angle="90" />
+                                            </ContentPresenter.LayoutTransform>
+                                        </ContentPresenter>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                    </TabControl.Resources>
+                    <TabItem Header="Operation">
+                        <Label Content="Operation content goes here..."/>
+                    </TabItem>
+                    <TabItem Header="Service">
+                        <Label Content="Service content goes here..."/>
+                    </TabItem>
+                </TabControl>
             </TabItem>
-            <TabItem Header="Security"/>
-            <TabItem Header="Details"/>
+            <TabItem Header="+"/>
         </TabControl>
     </Grid>
 </Window>
