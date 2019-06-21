@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToskersCorner.RelayCommand"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabControl.Practise", "TabControl.Practise\TabControl.Practise.csproj", "{82E7495A-98BD-4DBB-B9B5-16E43358E5F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateCommand_Practises", "DelegateCommand_Practises\DelegateCommand_Practises.csproj", "{5A8B4DFB-F513-4362-A12C-542CCB1A37A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{82E7495A-98BD-4DBB-B9B5-16E43358E5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82E7495A-98BD-4DBB-B9B5-16E43358E5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E7495A-98BD-4DBB-B9B5-16E43358E5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A8B4DFB-F513-4362-A12C-542CCB1A37A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A8B4DFB-F513-4362-A12C-542CCB1A37A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A8B4DFB-F513-4362-A12C-542CCB1A37A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A8B4DFB-F513-4362-A12C-542CCB1A37A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

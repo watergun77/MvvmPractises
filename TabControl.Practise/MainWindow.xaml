@@ -6,30 +6,35 @@
         xmlns:local="clr-namespace:TabControl.Practise"
         mc:Ignorable="d"
         Title="FOUP TAS300" Height="300" Width="450">
+    <Window.Resources>
+        <Style TargetType="TabControl" x:Key="TabModes">
+            <Setter Property="TabStripPlacement" Value="Right"/>
+            <Style.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="90" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="FOUP #1">
-                <TabControl TabStripPlacement="Right">
-                    <TabControl.Resources>
-                        <Style TargetType="{x:Type TabItem}">
-                            <Setter Property="HeaderTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <ContentPresenter Content="{TemplateBinding Content}">
-                                            <ContentPresenter.LayoutTransform>
-                                                <RotateTransform Angle="90" />
-                                            </ContentPresenter.LayoutTransform>
-                                        </ContentPresenter>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Padding" Value="5" />
-                        </Style>
-                    </TabControl.Resources>
-                    <TabItem Header="Operation">
+                <TabControl Style="{StaticResource TabModes}" >
+                    <TabItem Header="Operation" >
                         <Label Content="Operation content goes here..."/>
                     </TabItem>
-                    <TabItem Header="Service">
+                    <TabItem Header="Service" >
                         <Label Content="Service content goes here..."/>
                     </TabItem>
                 </TabControl>
