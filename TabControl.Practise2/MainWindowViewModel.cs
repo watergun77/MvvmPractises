@@ -17,6 +17,12 @@ namespace TabControl.Practise2
             tabs = new ObservableCollection<ITab>();
             tabs.CollectionChanged += Tabs_CollectionChanged;
             Tabs = tabs;
+
+            //Tabs.Add(new DateTab());
+        }
+        ~MainWindowViewModel()
+        {
+            tabs.CollectionChanged -= Tabs_CollectionChanged;
         }
 
         private void NewTab(object obj)
@@ -35,7 +41,7 @@ namespace TabControl.Practise2
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     tab = (ITab)e.OldItems[0];
-                    tab.CloseRequested += OnTabCloseRequested;
+                    tab.CloseRequested -= OnTabCloseRequested;
                     break;
             }
         }

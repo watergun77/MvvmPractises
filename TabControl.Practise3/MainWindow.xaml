@@ -7,7 +7,18 @@
         mc:Ignorable="d"
         xmlns:vsc="clr-namespace:TabControl.Practise3.Views"
         Title="MainWindow" Height="600" Width="1000">
-    <Grid>
-        <vsc:OperationModes/>
-    </Grid>
+    <TabControl>
+        <TabItem Header="FOUP#1">
+            <vsc:OperationModes/>    
+        </TabItem>
+        <TabItem Header="FOUP#2">
+            <vsc:OperationModes/>
+        </TabItem>
+        <TabItem Header="FOUP#3">
+            <vsc:OperationModes/>
+        </TabItem>
+        <TabItem Header="FOUP#4">
+            <vsc:OperationModes/>
+        </TabItem>
+    </TabControl>
 </Window>

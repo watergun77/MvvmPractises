@@ -28,8 +28,6 @@
         </Style>
         <DataTemplate x:Key="OperationModeButtons">
             <StackPanel>
-                <Button Content="Connect/Disconnect"></Button>
-                <Button>Current State</Button>
                 <Button>Load</Button>
                 <Button>Unload</Button>
                 <Button Content="Pause/Resume"></Button>
@@ -39,13 +37,16 @@
         <DataTemplate x:Key="ServiceModeButtons" >
             <StackPanel>
                 <ContentControl ContentTemplate="{StaticResource OperationModeButtons}"></ContentControl>
+                <Button Content="Connect/Disconnect"></Button>
+                <Button>Current State</Button>
                 <Button>Reset</Button>
                 <Button>Launch Maintenance Tool</Button>
             </StackPanel>
         </DataTemplate>
-        <DataTemplate x:Key="InfoTable">
+        <DataTemplate x:Key="StatusTable">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -71,71 +72,166 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>                
-                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">Equipment Status</Label>
-                <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">Initial Position</Label>
-                <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Operation Status</Label>
-                <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right">Cassette presence</Label>
-                <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right">FOUP clamp status</Label>
-                <Label Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right">Latch key status</Label>
-                <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right">Vacuum</Label>
-                <Label Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right">Door Position</Label>
-                <Label Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right">Wafer protrusion sensor</Label>
-                <Label Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right">Z-axis position</Label>
-                <Label Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right">Y-axis position</Label>
-                <Label Grid.Column="0" Grid.Row="12" HorizontalAlignment="Right">Mapper arm position</Label>
-                <Label Grid.Column="0" Grid.Row="13" HorizontalAlignment="Right">Mapper Z-axis</Label>
-                <Label Grid.Column="0" Grid.Row="14" HorizontalAlignment="Right">Mapper stopper</Label>
-                <Label Grid.Column="0" Grid.Row="15" HorizontalAlignment="Right">Mapper status</Label>
-                <Label Grid.Column="0" Grid.Row="16" HorizontalAlignment="Right">Interlock key</Label>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">Communication</Label>
+                <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">Equipment Status</Label>
+                <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Initial Position</Label>
+                <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right">Operation Status</Label>
+                <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right">Cassette presence</Label>
+                <Label Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right">FOUP clamp status</Label>
+                <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right">Latch key status</Label>
+                <Label Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right">Vacuum</Label>
+                <Label Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right">Door Position</Label>
+                <Label Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right">Wafer protrusion sensor</Label>
+                <Label Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right">Z-axis position</Label>
+                <Label Grid.Column="0" Grid.Row="12" HorizontalAlignment="Right">Y-axis position</Label>
+                <Label Grid.Column="0" Grid.Row="13" HorizontalAlignment="Right">Mapper arm position</Label>
+                <Label Grid.Column="0" Grid.Row="14" HorizontalAlignment="Right">Mapper Z-axis</Label>
+                <Label Grid.Column="0" Grid.Row="15" HorizontalAlignment="Right">Mapper stopper</Label>
+                <Label Grid.Column="0" Grid.Row="16" HorizontalAlignment="Right">Mapper status</Label>
+                <Label Grid.Column="0" Grid.Row="17" HorizontalAlignment="Right">Interlock key</Label>
                 <Label Grid.Column="1" Grid.Row="0">Status</Label>
-                <Label Grid.Column="1" Grid.Row="1" Content="Normal"/>
-                <Label Grid.Column="1" Grid.Row="2" Content="Unexecuted"/>
-                <Label Grid.Column="1" Grid.Row="3" Content="Stopped"/>
-                <Label Grid.Column="1" Grid.Row="4" Content="None"/>
-                <Label Grid.Column="1" Grid.Row="5" Content="Open"/>
+                <Label Grid.Column="1" Grid.Row="1" Content="Online"/>
+                <Label Grid.Column="1" Grid.Row="2" Content="Normal"/>
+                <Label Grid.Column="1" Grid.Row="3" Content="Unexecuted"/>
+                <Label Grid.Column="1" Grid.Row="4" Content="Stopped"/>
+                <Label Grid.Column="1" Grid.Row="5" Content="None"/>
                 <Label Grid.Column="1" Grid.Row="6" Content="Open"/>
-                <Label Grid.Column="1" Grid.Row="7" Content="OFF"/>
-                <Label Grid.Column="1" Grid.Row="8" Content="Open position"/>
-                <Label Grid.Column="1" Grid.Row="9" Content="Blocked"/>
-                <Label Grid.Column="1" Grid.Row="10" Content="Up position"/>
-                <Label Grid.Column="1" Grid.Row="11" Content="Undock position"/>
-                <Label Grid.Column="1" Grid.Row="12" Content="Open"/>
-                <Label Grid.Column="1" Grid.Row="13" Content="Retract position"/>
-                <Label Grid.Column="1" Grid.Row="14" Content="ON"/>
-                <Label Grid.Column="1" Grid.Row="15" Content="Unexecuted"/>
-                <Label Grid.Column="1" Grid.Row="16" Content="Enable"/>
+                <Label Grid.Column="1" Grid.Row="7" Content="Open"/>
+                <Label Grid.Column="1" Grid.Row="8" Content="OFF"/>
+                <Label Grid.Column="1" Grid.Row="9" Content="Open position"/>
+                <Label Grid.Column="1" Grid.Row="10" Content="Blocked"/>
+                <Label Grid.Column="1" Grid.Row="11" Content="Up position"/>
+                <Label Grid.Column="1" Grid.Row="12" Content="Undock position"/>
+                <Label Grid.Column="1" Grid.Row="13" Content="Open"/>
+                <Label Grid.Column="1" Grid.Row="14" Content="Retract position"/>
+                <Label Grid.Column="1" Grid.Row="15" Content="ON"/>
+                <Label Grid.Column="1" Grid.Row="16" Content="Unexecuted"/>
+                <Label Grid.Column="1" Grid.Row="17" Content="Enable"/>
                 <!--ErrorDescription-->
-                <Label Grid.Column="0" Grid.Row="18">Error Code</Label>
-                <Label Grid.Column="0" Grid.Row="19" Content="00" />
-                <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="18">Error Description</Label>
-                <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="19" Content="None"/>
+                <Label Grid.Column="0" Grid.Row="19">Error Code</Label>
+                <Label Grid.Column="0" Grid.Row="20" Content="00" />
+                <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="19">Error Description</Label>
+                <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="20" Content="None"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MappingTable">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>                    
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--Header-->
+                <Label Grid.Column="0" Grid.Row="0" Content="Slot"></Label>
+                <Label Grid.Column="1" Grid.Row="0" Content="Slot Status"></Label>
+                <!--Wafer Slot-->
+                <Label Grid.Column="0" Grid.Row="1">25</Label>
+                <Label Grid.Column="0" Grid.Row="2">24</Label>
+                <Label Grid.Column="0" Grid.Row="3">23</Label>
+                <Label Grid.Column="0" Grid.Row="4">22</Label>
+                <Label Grid.Column="0" Grid.Row="5">21</Label>
+                <Label Grid.Column="0" Grid.Row="6">20</Label>
+                <Label Grid.Column="0" Grid.Row="7">19</Label>
+                <Label Grid.Column="0" Grid.Row="8">18</Label>
+                <Label Grid.Column="0" Grid.Row="9">17</Label>
+                <Label Grid.Column="0" Grid.Row="10">16</Label>
+                <Label Grid.Column="0" Grid.Row="11">15</Label>
+                <Label Grid.Column="0" Grid.Row="12">14</Label>
+                <Label Grid.Column="0" Grid.Row="13">13</Label>
+                <Label Grid.Column="0" Grid.Row="14">12</Label>
+                <Label Grid.Column="0" Grid.Row="15">11</Label>
+                <Label Grid.Column="0" Grid.Row="16">10</Label>
+                <Label Grid.Column="0" Grid.Row="17">09</Label>
+                <Label Grid.Column="0" Grid.Row="18">08</Label>
+                <Label Grid.Column="0" Grid.Row="19">07</Label>
+                <Label Grid.Column="0" Grid.Row="20">06</Label>
+                <Label Grid.Column="0" Grid.Row="21">05</Label>
+                <Label Grid.Column="0" Grid.Row="22">04</Label>
+                <Label Grid.Column="0" Grid.Row="23">03</Label>
+                <Label Grid.Column="0" Grid.Row="24">02</Label>
+                <Label Grid.Column="0" Grid.Row="25">01</Label>
+                <!--Map Status : No Wafer, Wafer, Crossed, Undefined, Overlapping wafers-->
+                <Label Grid.Column="1" Grid.Row="1" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="2" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="3" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="4" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="5" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="6" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="7" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="8" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="9" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="10" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="11" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="12" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="13" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="14" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="15" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="16" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="17" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="18" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="19" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="20" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="21" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="22" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="23" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="24" Content="No Wafer"/>
+                <Label Grid.Column="1" Grid.Row="25" Content="No Wafer"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="OperationModeUI">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ContentControl ContentTemplate="{StaticResource InfoTable}"/>
-                <ContentControl Grid.Column="1" ContentTemplate="{StaticResource OperationModeButtons}"/>
+                <ContentControl ContentTemplate="{StaticResource StatusTable}"/>
+                <ContentControl Grid.Column="1" ContentTemplate="{StaticResource MappingTable}"/>
+                <ContentControl Grid.Column="2" ContentTemplate="{StaticResource OperationModeButtons}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ServiceModeUI">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ContentControl ContentTemplate="{StaticResource InfoTable}"/>
-                <ContentControl Grid.Column="1" ContentTemplate="{StaticResource ServiceModeButtons}"/>
+                <ContentControl ContentTemplate="{StaticResource StatusTable}"/>
+                <ContentControl Grid.Column="1" ContentTemplate="{StaticResource MappingTable}"/>
+                <ContentControl Grid.Column="2" ContentTemplate="{StaticResource ServiceModeButtons}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    <TabControl Style="{StaticResource TabModes}">
+    <TabControl Style="{StaticResource TabModes}">        
         <TabItem Header="Operation" ContentTemplate="{StaticResource OperationModeUI}"></TabItem>
         <TabItem Header="Service" ContentTemplate="{StaticResource ServiceModeUI}"></TabItem>        
     </TabControl>
