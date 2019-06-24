@@ -10,6 +10,7 @@ namespace TabControl.Practise2
         public ICommand NewTabCommand { get; }
         private readonly ObservableCollection<ITab> tabs;
         public ObservableCollection<ITab> Tabs { get; }
+        public int SelectedTabIndex { get; set; } 
 
         public MainWindowViewModel()
         {
@@ -17,8 +18,8 @@ namespace TabControl.Practise2
             tabs = new ObservableCollection<ITab>();
             tabs.CollectionChanged += Tabs_CollectionChanged;
             Tabs = tabs;
-
-            //Tabs.Add(new DateTab());
+            
+            Tabs.Add(new DateTab());
         }
         ~MainWindowViewModel()
         {
@@ -28,6 +29,7 @@ namespace TabControl.Practise2
         private void NewTab(object obj)
         {
             Tabs.Add(new DateTab());
+            SelectedTabIndex = Tabs.Count - 1;
         }
 
         private void Tabs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
