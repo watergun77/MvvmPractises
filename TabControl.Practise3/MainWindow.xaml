@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TabControl.Practise3"        
         mc:Ignorable="d"
         xmlns:vsc="clr-namespace:TabControl.Practise3.Views"
-        Title="MainWindow" Height="350" Width="400">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <vsc:OperationModes/>
     </Grid>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TabControl.Practise3.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="TabControl" x:Key="TabModes">
             <Setter Property="TabStripPlacement" Value="Right"/>
@@ -22,28 +22,121 @@
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="Padding" Value="8" />
                 </Style>
             </Style.Resources>
         </Style>
-        <DataTemplate x:Key="OperationMode">
+        <DataTemplate x:Key="OperationModeButtons">
             <StackPanel>
-                <Button>Connect/Disconnect</Button>
+                <Button Content="Connect/Disconnect"></Button>
+                <Button>Current State</Button>
                 <Button>Load</Button>
                 <Button>Unload</Button>
-                <Button>Pause/Resume</Button>
+                <Button Content="Pause/Resume"></Button>
                 <Button>Stop</Button>
             </StackPanel>
         </DataTemplate>
-        <DataTemplate x:Key="ServiceMode">
+        <DataTemplate x:Key="ServiceModeButtons" >
             <StackPanel>
+                <ContentControl ContentTemplate="{StaticResource OperationModeButtons}"></ContentControl>
                 <Button>Reset</Button>
                 <Button>Launch Maintenance Tool</Button>
             </StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="InfoTable">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>                
+                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">Equipment Status</Label>
+                <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">Initial Position</Label>
+                <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Operation Status</Label>
+                <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right">Cassette presence</Label>
+                <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right">FOUP clamp status</Label>
+                <Label Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right">Latch key status</Label>
+                <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right">Vacuum</Label>
+                <Label Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right">Door Position</Label>
+                <Label Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right">Wafer protrusion sensor</Label>
+                <Label Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right">Z-axis position</Label>
+                <Label Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right">Y-axis position</Label>
+                <Label Grid.Column="0" Grid.Row="12" HorizontalAlignment="Right">Mapper arm position</Label>
+                <Label Grid.Column="0" Grid.Row="13" HorizontalAlignment="Right">Mapper Z-axis</Label>
+                <Label Grid.Column="0" Grid.Row="14" HorizontalAlignment="Right">Mapper stopper</Label>
+                <Label Grid.Column="0" Grid.Row="15" HorizontalAlignment="Right">Mapper status</Label>
+                <Label Grid.Column="0" Grid.Row="16" HorizontalAlignment="Right">Interlock key</Label>
+                <Label Grid.Column="1" Grid.Row="0">Status</Label>
+                <Label Grid.Column="1" Grid.Row="1" Content="Normal"/>
+                <Label Grid.Column="1" Grid.Row="2" Content="Unexecuted"/>
+                <Label Grid.Column="1" Grid.Row="3" Content="Stopped"/>
+                <Label Grid.Column="1" Grid.Row="4" Content="None"/>
+                <Label Grid.Column="1" Grid.Row="5" Content="Open"/>
+                <Label Grid.Column="1" Grid.Row="6" Content="Open"/>
+                <Label Grid.Column="1" Grid.Row="7" Content="OFF"/>
+                <Label Grid.Column="1" Grid.Row="8" Content="Open position"/>
+                <Label Grid.Column="1" Grid.Row="9" Content="Blocked"/>
+                <Label Grid.Column="1" Grid.Row="10" Content="Up position"/>
+                <Label Grid.Column="1" Grid.Row="11" Content="Undock position"/>
+                <Label Grid.Column="1" Grid.Row="12" Content="Open"/>
+                <Label Grid.Column="1" Grid.Row="13" Content="Retract position"/>
+                <Label Grid.Column="1" Grid.Row="14" Content="ON"/>
+                <Label Grid.Column="1" Grid.Row="15" Content="Unexecuted"/>
+                <Label Grid.Column="1" Grid.Row="16" Content="Enable"/>
+                <!--ErrorDescription-->
+                <Label Grid.Column="0" Grid.Row="18">Error Code</Label>
+                <Label Grid.Column="0" Grid.Row="19" Content="00" />
+                <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="18">Error Description</Label>
+                <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="19" Content="None"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="OperationModeUI">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ContentControl ContentTemplate="{StaticResource InfoTable}"/>
+                <ContentControl Grid.Column="1" ContentTemplate="{StaticResource OperationModeButtons}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ServiceModeUI">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ContentControl ContentTemplate="{StaticResource InfoTable}"/>
+                <ContentControl Grid.Column="1" ContentTemplate="{StaticResource ServiceModeButtons}"/>
+            </Grid>
+        </DataTemplate>
     </UserControl.Resources>
     <TabControl Style="{StaticResource TabModes}">
-        <TabItem Header="Operation" ContentTemplate="{StaticResource OperationMode}"></TabItem>
-        <TabItem Header="Service" ContentTemplate="{StaticResource ServiceMode}"></TabItem>
+        <TabItem Header="Operation" ContentTemplate="{StaticResource OperationModeUI}"></TabItem>
+        <TabItem Header="Service" ContentTemplate="{StaticResource ServiceModeUI}"></TabItem>        
     </TabControl>
 </UserControl>
