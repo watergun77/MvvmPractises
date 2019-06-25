@@ -1,16 +1,36 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace TabControl.Practise2
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ICommand NewTabCommand { get; }
         private readonly ObservableCollection<ITab> tabs;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public ObservableCollection<ITab> Tabs { get; }
-        public int SelectedTabIndex { get; set; } 
+        private int selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get
+            {
+                return selectedTabIndex;
+            }
+            set
+            {
+                selectedTabIndex = value;
+                OnPropertyChanged(nameof(SelectedTabIndex));
+            }
+        } 
 
         public MainWindowViewModel()
         {

@@ -11,7 +11,7 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Button Command="{Binding NewTabCommand}" Margin="0,0,12,0">New Tab</Button>
         </StackPanel>
-        <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex}">
+        <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex, UpdateSourceTrigger=PropertyChanged}">
             <TabControl.Resources>
                 <DataTemplate DataType="{x:Type local:DateTab}">
                     <local:DateTabView/>
